@@ -32,3 +32,7 @@ Route::get('/mahasiswa', [MahasiswaController::class, 'index']);
 
 // siswa
 Route::get('/siswa', [SiswaController::class, 'index']);
+Route::get('/siswa/tambah', [SiswaController::class, 'create']);
+Route::get('/siswa/{siswa}', [SiswaController::class, 'show']);
+
+Route::post('/siswa', [SiswaController::class, 'store']);

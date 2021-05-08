@@ -14,67 +14,83 @@ class SiswaController extends Controller
         return view('siswa.index', compact('siswa'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function create()
     {
-        //
+        return view('siswa.tambah');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+
+
+
+
     public function store(Request $request)
     {
-        //
+       // Cara 1
+
+        // $siswa = new Siswa;
+        // $siswa->nama = $request->nama;
+        // $siswa->nrp = $request->nrp;
+        // $siswa->email = $request->email;
+        // $siswa->jurusan = $request->jurusan;
+
+        // $siswa->save();
+
+
+
+        // Cara 2
+        // Siswa::create([
+        //    'nama' => $request->nama,
+        //    'nrp' => $request->nrp,
+        //    'email' => $request->email,
+        //    'jurusan' => $request->jurusan
+        // ]);
+
+
+        // Cara 3
+        $request->validate([
+            'nama' => 'required|string',
+            'nrp' => 'required|size:9|unique:Siswa,nrp',
+            'email' => 'required|email:rfc,filter|unique:Siswa,email',
+            'jurusan' => 'required|string'
+        ]);
+        Siswa::create($request->all());
+
+
+
+        return redirect('/siswa')->with('status', 'Data Berhasil Ditambahkan');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Siswa  $siswa
-     * @return \Illuminate\Http\Response
-     */
+
+
+
     public function show(Siswa $siswa)
     {
-        //
+        return view('siswa.detail', compact('siswa'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Siswa  $siswa
-     * @return \Illuminate\Http\Response
-     */
+
+
+
     public function edit(Siswa $siswa)
     {
         //
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Siswa  $siswa
-     * @return \Illuminate\Http\Response
-     */
+
+
+
+
     public function update(Request $request, Siswa $siswa)
     {
         //
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Siswa  $siswa
-     * @return \Illuminate\Http\Response
-     */
+
+
+
+
+
     public function destroy(Siswa $siswa)
     {
         //
