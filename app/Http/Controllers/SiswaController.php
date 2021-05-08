@@ -74,7 +74,7 @@ class SiswaController extends Controller
 
     public function edit(Siswa $siswa)
     {
-        //
+        return view('siswa.edit', compact('siswa'));
     }
 
 
@@ -83,7 +83,22 @@ class SiswaController extends Controller
 
     public function update(Request $request, Siswa $siswa)
     {
-        //
+         $request->validate([
+            'nama' => 'required|string',
+            'nrp' => 'required|size:9|unique:Siswa,nrp',
+            'email' => 'required|email:rfc,filter|unique:Siswa,email',
+            'jurusan' => 'required|string'
+        ]);
+
+
+        Siswa::where('id', $siswa->id)
+            ->update([
+                'nama' => $request->nama,
+                'nrp' => $request->nrp,
+                'email' => $request->email,
+                'jurusan' => $request->jurusan
+            ]);
+        return redirect('/siswa')->with('status', 'Data Berhasil Diubah');
     }
 
 
@@ -93,6 +108,8 @@ class SiswaController extends Controller
 
     public function destroy(Siswa $siswa)
     {
-        //
+        Siswa::destroy($siswa->id);
+        return redirect('/siswa')->with('status', 'Data Berhasil Dihapus');
+
     }
 }

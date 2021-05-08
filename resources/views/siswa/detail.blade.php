@@ -12,8 +12,17 @@
                         <h6 class="card-subtitle mb-2 text-muted">{{$siswa->jurusan}}</h6>
                         <p class="card-text" style="margin:0;">{{$siswa->email}}</p>
                         <p class="card-text">{{$siswa->nrp}}</p>
-                        <a href="#" class="card-link btn btn-warning">Ubah</a>
-                        <a href="#" class="card-link btn btn-danger">Hapus</a>
+
+
+                        <a href="{{url("/siswa/edit/$siswa->id")}}" class="card-link btn btn-warning">Ubah</a>
+
+                        <form action="{{ url("/siswa/$siswa->id") }}" method="post" class="d-inline">
+                            @method('delete')
+                            @csrf
+                            <button type="submit" onclick="return confirm('Apakah Anda Yakin Menghapus Data Ini')" class="btn btn-danger">Hapus</button>
+                        </form>
+
+
                         <a href="{{url('/siswa')}}" class="card-link btn btn-primary">Kembali</a>
                     </div>
                 </div>

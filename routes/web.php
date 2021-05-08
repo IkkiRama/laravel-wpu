@@ -34,5 +34,9 @@ Route::get('/mahasiswa', [MahasiswaController::class, 'index']);
 Route::get('/siswa', [SiswaController::class, 'index']);
 Route::get('/siswa/tambah', [SiswaController::class, 'create']);
 Route::get('/siswa/{siswa}', [SiswaController::class, 'show']);
+Route::get('/siswa/edit/{siswa}', [SiswaController::class, 'edit']);
 
 Route::post('/siswa', [SiswaController::class, 'store']);
+
+Route::delete('/siswa/{siswa}', [SiswaController::class, 'destroy']);
+Route::patch('/siswa/{siswa}', [SiswaController::class, 'update']);
