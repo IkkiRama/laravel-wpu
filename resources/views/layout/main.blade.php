@@ -22,6 +22,7 @@
                 <div class="navbar-nav ml-auto">
                     <a class="nav-link active" href="{{url('/')}}">Home</span></a>
                     <a class="nav-link active" href="{{url('/about')}}">About</span></a>
+                    <a class="nav-link active" href="{{url('/mahasiswa')}}">Mahasiswa</span></a>
                     <a class="nav-link active" href="{{url('/siswa')}}">Siswa</span></a>
                 </div>
             </div>
